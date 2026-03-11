@@ -4,7 +4,58 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AvisBot — Plus d'avis positifs, automatiquement</title>
-  <meta name="description" content="AvisBot surveille vos avis Google, génère des réponses IA et collecte automatiquement les avis de vos clients satisfaits." />
+  <meta name="description" content="AvisBot surveille vos avis Google, génère des réponses IA et collecte automatiquement les avis de vos clients satisfaits. Essai gratuit 14 jours." />
+
+  <!-- Open Graph / LinkedIn / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://avisbot.io/" />
+  <meta property="og:title" content="AvisBot — Plus d'avis positifs, automatiquement" />
+  <meta property="og:description" content="Répondez à tous vos avis Google automatiquement. Collectez plus d'avis positifs. Setup en 5 minutes. Essai gratuit 14 jours." />
+  <meta property="og:image" content="https://avisbot.io/og-image.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AvisBot — Plus d'avis positifs, automatiquement" />
+  <meta name="twitter:description" content="Répondez à tous vos avis Google automatiquement. Setup en 5 minutes." />
+
+  <!-- Schema.org SoftwareApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "AvisBot",
+    "applicationCategory": "BusinessApplication",
+    "description": "AvisBot automatise les réponses aux avis Google et collecte proactivement les avis positifs pour les restaurants et cafés indépendants.",
+    "url": "https://avisbot.io",
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Starter",
+        "price": "29",
+        "priceCurrency": "EUR",
+        "billingIncrement": "P1M"
+      },
+      {
+        "@type": "Offer",
+        "name": "Pro",
+        "price": "49",
+        "priceCurrency": "EUR",
+        "billingIncrement": "P1M"
+      },
+      {
+        "@type": "Offer",
+        "name": "Business",
+        "price": "99",
+        "priceCurrency": "EUR",
+        "billingIncrement": "P1M"
+      }
+    ],
+    "targetAudience": {
+      "@type": "Audience",
+      "audienceType": "Restaurants et cafés indépendants"
+    }
+  }
+  </script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Segoe UI', sans-serif; color: #1a1a2e; background: #fff; }
@@ -186,7 +237,8 @@
         <li>Notifications Telegram</li>
         <li>1 établissement</li>
       </ul>
-      <a href="#" class="plan-cta">Essayer 14 jours gratuit</a>
+      <!-- STRIPE_STARTER_LINK: remplacer href="#" par ton lien Stripe Starter 29€ -->
+      <a href="#" class="plan-cta" id="cta-starter">Essayer 14 jours gratuit</a>
     </div>
     <div class="plan featured">
       <div class="plan-badge">⭐ Le plus populaire</div>
@@ -199,7 +251,8 @@
         <li>Score réputation mensuel</li>
         <li>Jusqu'à 3 établissements</li>
       </ul>
-      <a href="#" class="plan-cta">Essayer 14 jours gratuit</a>
+      <!-- STRIPE_PRO_LINK: remplacer href="#" par ton lien Stripe Pro 49€ -->
+      <a href="#" class="plan-cta" id="cta-pro">Essayer 14 jours gratuit</a>
     </div>
     <div class="plan">
       <div class="plan-name">BUSINESS</div>
@@ -211,7 +264,8 @@
         <li>Établissements illimités</li>
         <li>Support prioritaire</li>
       </ul>
-      <a href="#" class="plan-cta">Essayer 14 jours gratuit</a>
+      <!-- STRIPE_BUSINESS_LINK: remplacer href="#" par ton lien Stripe Business 99€ -->
+      <a href="#" class="plan-cta" id="cta-business">Essayer 14 jours gratuit</a>
     </div>
   </div>
 </section>
