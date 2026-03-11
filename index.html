@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AvisBot — Plus d'avis positifs, automatiquement</title>
+  <meta name="description" content="AvisBot surveille vos avis Google, génère des réponses IA et collecte automatiquement les avis de vos clients satisfaits." />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; color: #1a1a2e; background: #fff; }
+
+    /* NAV */
+    nav { display: flex; justify-content: space-between; align-items: center;
+          padding: 20px 40px; border-bottom: 1px solid #f0f0f0; }
+    .logo { font-size: 1.4rem; font-weight: 800; color: #2563eb; }
+    .logo span { color: #1a1a2e; }
+    .cta-nav { background: #2563eb; color: #fff; padding: 10px 22px;
+               border-radius: 8px; text-decoration: none; font-weight: 600;
+               font-size: 0.9rem; }
+
+    /* HERO */
+    .hero { text-align: center; padding: 80px 20px 60px; max-width: 760px; margin: 0 auto; }
+    .badge { background: #eff6ff; color: #2563eb; padding: 6px 16px;
+             border-radius: 20px; font-size: 0.82rem; font-weight: 600;
+             display: inline-block; margin-bottom: 24px; }
+    h1 { font-size: 3rem; font-weight: 900; line-height: 1.15; margin-bottom: 20px; }
+    h1 em { color: #2563eb; font-style: normal; }
+    .subtitle { font-size: 1.15rem; color: #555; line-height: 1.7; margin-bottom: 36px; }
+    .cta-hero { background: #2563eb; color: #fff; padding: 16px 36px;
+                border-radius: 10px; text-decoration: none; font-weight: 700;
+                font-size: 1.05rem; display: inline-block; }
+    .cta-sub { display: block; margin-top: 12px; font-size: 0.82rem; color: #888; }
+
+    /* PROBLEM */
+    .section { padding: 70px 20px; max-width: 900px; margin: 0 auto; }
+    .section-label { font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+                     letter-spacing: 2px; color: #2563eb; margin-bottom: 12px; }
+    h2 { font-size: 2rem; font-weight: 800; margin-bottom: 20px; }
+    .problem-text { font-size: 1.1rem; color: #444; line-height: 1.8; }
+    .highlight { background: #fff3cd; padding: 20px 24px; border-left: 4px solid #f59e0b;
+                 border-radius: 6px; margin: 28px 0; font-size: 1rem; color: #333; }
+
+    /* FEATURES */
+    .features-bg { background: #f8faff; padding: 70px 20px; }
+    .features-inner { max-width: 900px; margin: 0 auto; }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                     gap: 24px; margin-top: 40px; }
+    .card { background: #fff; border-radius: 12px; padding: 28px 24px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    .card-icon { font-size: 2rem; margin-bottom: 14px; }
+    .card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+    .card p { font-size: 0.92rem; color: #555; line-height: 1.6; }
+
+    /* PRICING */
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                    gap: 20px; margin-top: 40px; }
+    .plan { border: 2px solid #e5e7eb; border-radius: 14px; padding: 32px 24px; text-align: center; }
+    .plan.featured { border-color: #2563eb; position: relative; }
+    .plan-badge { background: #2563eb; color: #fff; font-size: 0.75rem; font-weight: 700;
+                  padding: 4px 14px; border-radius: 20px; position: absolute; top: -12px;
+                  left: 50%; transform: translateX(-50%); white-space: nowrap; }
+    .plan-name { font-size: 0.9rem; font-weight: 600; color: #888; margin-bottom: 8px; }
+    .plan-price { font-size: 2.6rem; font-weight: 900; color: #1a1a2e; }
+    .plan-price span { font-size: 1rem; font-weight: 400; color: #888; }
+    .plan ul { list-style: none; margin: 20px 0; text-align: left; }
+    .plan ul li { padding: 6px 0; font-size: 0.9rem; color: #444; }
+    .plan ul li::before { content: "✓ "; color: #2563eb; font-weight: 700; }
+    .plan-cta { display: block; background: #2563eb; color: #fff; padding: 12px 20px;
+                border-radius: 8px; text-decoration: none; font-weight: 600;
+                margin-top: 20px; font-size: 0.9rem; }
+    .plan:not(.featured) .plan-cta { background: #f3f4f6; color: #1a1a2e; }
+
+    /* OBJECTIONS */
+    .faq { max-width: 680px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid #f0f0f0; padding: 22px 0; }
+    .faq-q { font-weight: 700; font-size: 1rem; margin-bottom: 8px; }
+    .faq-a { color: #555; font-size: 0.95rem; line-height: 1.7; }
+
+    /* FINAL CTA */
+    .final-cta { background: #1a1a2e; color: #fff; text-align: center; padding: 70px 20px; }
+    .final-cta h2 { font-size: 2rem; margin-bottom: 16px; }
+    .final-cta p { color: #aaa; margin-bottom: 32px; font-size: 1rem; }
+    .final-cta a { background: #2563eb; color: #fff; padding: 16px 40px;
+                   border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 1.05rem; }
+
+    /* FOOTER */
+    footer { text-align: center; padding: 24px; font-size: 0.82rem; color: #aaa; }
+
+    @media (max-width: 640px) {
+      h1 { font-size: 2rem; }
+      nav { padding: 16px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Avis<span>Bot</span></div>
+  <a href="#pricing" class="cta-nav">Essayer gratuitement</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge">🤖 Propulsé par IA · Zéro configuration</div>
+  <h1>Plus d'avis positifs.<br /><em>Automatiquement.</em></h1>
+  <p class="subtitle">
+    AvisBot collecte les avis de vos clients satisfaits, répond à tous vos avis Google par IA,
+    et vous alerte en temps réel sur les avis négatifs — le tout sans effort.
+  </p>
+  <a href="#pricing" class="cta-hero">Démarrer l'essai gratuit de 14 jours →</a>
+  <span class="cta-sub">Sans carte bancaire · Sans engagement · Annulation en 1 clic</span>
+</section>
+
+<!-- PROBLEM -->
+<section class="section">
+  <div class="section-label">Le problème</div>
+  <h2>Vos clients satisfaits<br />ne laissent jamais d'avis.</h2>
+  <p class="problem-text">
+    Les clients mécontents partagent leur expérience spontanément.
+    Les clients satisfaits, eux, rentrent chez eux et n'écrivent rien.
+    Résultat : votre note Google ne reflète pas votre vrai niveau.
+  </p>
+  <div class="highlight">
+    📊 <strong>Une hausse d'une étoile sur Google</strong> augmente les revenus
+    d'un commerce local de <strong>5 à 9%</strong>. Sur 8 000€/mois de CA,
+    c'est jusqu'à <strong>720€ de plus chaque mois.</strong>
+  </div>
+  <p class="problem-text">
+    AvisBot corrige ce déséquilibre. Il invite vos clients satisfaits à laisser un avis
+    au bon moment — juste après leur expérience positive. Et il gère tout le reste seul.
+  </p>
+</section>
+
+<!-- FEATURES -->
+<div class="features-bg">
+  <div class="features-inner">
+    <div class="section-label">Ce qu'AvisBot fait</div>
+    <h2>Votre réputation,<br />en pilote automatique.</h2>
+    <div class="features-grid">
+      <div class="card">
+        <div class="card-icon">📲</div>
+        <h3>Collecte d'avis proactive</h3>
+        <p>Un QR code en caisse ou un SMS post-visite invite vos clients satisfaits à laisser un avis Google au moment idéal.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔒</div>
+        <h3>Avis négatifs en privé</h3>
+        <p>Si un client est déçu, AvisBot l'invite à vous écrire directement. Le problème est résolu avant de devenir public.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">✍️</div>
+        <h3>Réponses IA instantanées</h3>
+        <p>Chaque avis reçoit une réponse professionnelle générée par IA. Vous validez en un clic depuis Telegram.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔔</div>
+        <h3>Alertes temps réel</h3>
+        <p>Dès qu'un avis négatif apparaît, vous êtes notifié immédiatement. Vous réagissez avant que ça ne se propage.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📈</div>
+        <h3>Score réputation</h3>
+        <p>Un tableau de bord simple vous montre l'évolution de votre note, le nombre d'avis et les tendances chaque mois.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏪</div>
+        <h3>Pour les petits commerces</h3>
+        <p>Pas de CRM, pas de configuration complexe. AvisBot est conçu pour les restaurateurs, coiffeurs, artisans.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<section class="section" id="pricing">
+  <div class="section-label">Tarifs</div>
+  <h2>Simple et transparent.</h2>
+  <div class="pricing-grid">
+    <div class="plan">
+      <div class="plan-name">STARTER</div>
+      <div class="plan-price">29€ <span>/mois</span></div>
+      <ul>
+        <li>Réponses IA illimitées</li>
+        <li>Alertes avis négatifs</li>
+        <li>Notifications Telegram</li>
+        <li>1 établissement</li>
+      </ul>
+      <a href="#" class="plan-cta">Essayer 14 jours gratuit</a>
+    </div>
+    <div class="plan featured">
+      <div class="plan-badge">⭐ Le plus populaire</div>
+      <div class="plan-name">PRO</div>
+      <div class="plan-price">49€ <span>/mois</span></div>
+      <ul>
+        <li>Tout Starter inclus</li>
+        <li>QR code collecte d'avis</li>
+        <li>Funnel positif / négatif</li>
+        <li>Score réputation mensuel</li>
+        <li>Jusqu'à 3 établissements</li>
+      </ul>
+      <a href="#" class="plan-cta">Essayer 14 jours gratuit</a>
+    </div>
+    <div class="plan">
+      <div class="plan-name">BUSINESS</div>
+      <div class="plan-price">99€ <span>/mois</span></div>
+      <ul>
+        <li>Tout Pro inclus</li>
+        <li>Dashboard centralisation</li>
+        <li>Rapport mensuel auto</li>
+        <li>Établissements illimités</li>
+        <li>Support prioritaire</li>
+      </ul>
+      <a href="#" class="plan-cta">Essayer 14 jours gratuit</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+  <div class="section-label">Questions fréquentes</div>
+  <h2 style="margin-bottom:36px">Tout ce qu'il faut savoir.</h2>
+  <div class="faq">
+    <div class="faq-item">
+      <div class="faq-q">Je n'ai pas le temps de gérer ça.</div>
+      <div class="faq-a">AvisBot tourne seul. Vous recevez une notification Telegram, vous cliquez "Publier". Comptez 2 minutes par semaine maximum.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">J'ai déjà Google My Business.</div>
+      <div class="faq-a">Google My Business vous montre les avis existants. AvisBot vous aide à en avoir davantage et à y répondre professionnellement sans effort.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Est-ce vraiment efficace ?</div>
+      <div class="faq-a">Une hausse d'une étoile sur Google augmente les revenus d'un commerce local de 5 à 9% (Harvard Business Review). Sur 10 000€/mois de chiffre d'affaires, c'est 500 à 900€ de plus par mois.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">C'est compliqué à installer ?</div>
+      <div class="faq-a">Non. Vous créez votre compte, vous scannez votre page Google Business, et AvisBot est opérationnel en moins de 10 minutes.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<div class="final-cta">
+  <h2>Prêt à reprendre le contrôle<br />de votre réputation ?</h2>
+  <p>14 jours gratuits · Sans carte · Sans engagement</p>
+  <a href="#">Commencer maintenant →</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  © 2026 AvisBot · <a href="mailto:hello@avisbot.io" style="color:#aaa">hello@avisbot.io</a>
+</footer>
+
+</body>
+</html>
